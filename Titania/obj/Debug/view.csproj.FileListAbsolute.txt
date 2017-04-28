@@ -1,0 +1,9 @@
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\obj\Debug\view.csprojResolveAssemblyReference.cache
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\obj\Debug\Titania.Form1.resources
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\obj\Debug\Titania.Properties.Resources.resources
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\obj\Debug\view.csproj.GenerateResource.Cache
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\bin\Debug\Titania.exe.config
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\bin\Debug\Titania.exe
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\bin\Debug\Titania.pdb
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\obj\Debug\Titania.exe
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Titania\obj\Debug\Titania.pdb
