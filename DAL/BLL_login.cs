@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    class BLL_login
+    public class BLL_login
     {
         public static void setBLLContext()
         {

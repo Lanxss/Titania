@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Titania
 {
     static class Program
@@ -16,7 +17,9 @@ namespace Titania
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form_titania());
+
+            BLL.BLL_login.setBLLContext();
         }
     }
 }

@@ -1,0 +1,8 @@
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\controler\bin\Debug\controler.dll
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\controler\bin\Debug\controler.pdb
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\controler\bin\Debug\Npgsql.dll
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\controler\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\controler\bin\Debug\Npgsql.xml
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\controler\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\controler\obj\Debug\controler.dll
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\controler\obj\Debug\controler.pdb
