@@ -58,11 +58,14 @@ namespace DAL
         {
             if (_conn == null)
                 _conn = new NpgsqlConnection("Server=" + _server + ";Port= " + _port + ";User Id=postgres;" + "Password=" + _mdp + ";Database=" + _database);
+            
             if (_conn != null)
-            {
+            {                
                 _conn.Open();
                 _dateConnectionOpening = DateTime.Now;
             }
+
+            System.Console.WriteLine("Connexion : " + _conn);
         }
         private static void CloseConn()
         {
