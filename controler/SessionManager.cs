@@ -87,7 +87,7 @@ namespace DAL
                     CloseConn();
                     OpenConn();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }

@@ -1,0 +1,5 @@
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Modele\bin\Debug\Modele.dll
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Modele\bin\Debug\Modele.pdb
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Modele\obj\Debug\Modele.csprojResolveAssemblyReference.cache
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Modele\obj\Debug\Modele.dll
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\Modele\obj\Debug\Modele.pdb

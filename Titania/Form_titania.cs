@@ -5,11 +5,15 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Collections;
+using Modele;
+using Renci.SshNet;
 
 namespace Titania
 {
     public partial class Form_titania : Form
     {
+        public  List<Projet> lst_projets;
+
         public Form_titania()
         {
             InitializeComponent();
@@ -24,7 +28,6 @@ namespace Titania
 
         private void Form_titania_Load(object sender, EventArgs e)
         {
-
             // Connexion au serveur 
             try
             {
@@ -55,26 +58,43 @@ namespace Titania
                     frm_log.ShowDialog(this);
                     return;
                 }
-
                 loadProject();
-            }
+                this.Show();
 
+            }
         }
 
         // Chargement des logins de l'utilisateur
         private void loadProject()
         {
+            lst_projets = new List<Projet>();
+
             IList<object[]> o_ligne_projet = BLL.CommonController.Getproject(Properties.Settings.Default["login"].ToString());
 			String url = "";
 
             foreach (var projet in o_ligne_projet)
             {
-				url = projet[4].ToString();
+
+                string w_desc = BLL.CommonController.GetDescprojet((int)projet[1]);
+
+                lst_projets.Add(new Projet((int)projet[1], projet[2].ToString(), w_desc, (DateTime)projet[3]));
 
 
-					
-                // createTreeFolder(projet[4].ToString());
+                url = projet[4].ToString();
+				
+                // Vérification du dossier sur le serveur
+                if (BLL.Uti.checkUrlFolder(url) == false)
+                {
+                    string w_rep = BLL.Uti.createFolderServ(url);
+                    if (w_rep != "")
+                    {
+                        MessageBox.Show(w_rep);
+                        return;
+                    }
+                }
+
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     using (StreamReader reader = new StreamReader(response.GetResponseStream()))
@@ -88,6 +108,7 @@ namespace Titania
 
 						TreeNode treeNode = new TreeNode(url.Substring(url.LastIndexOf("/") + 1));
 
+                        // Affiche les fichiers contenu dans le projet
 						if (matches.Count > 0)
                         {
 							foreach (Match match in matches)
@@ -95,7 +116,8 @@ namespace Titania
 								
 								try
 								{
-									treeNode.Nodes.Add(createTreeFolder(treeNode, match));
+                                    createTreeFolder(treeNode, match);
+
 								}
 								catch (Exception ex)
 								{
@@ -114,44 +136,28 @@ namespace Titania
 						treeView1.Nodes.Add(treeNode);
 					}
 				}
-
-                Console.ReadLine();
-
-                /*
-                try
-                {
-                    using (var client = new WebClient())
-                    {
-                        client.DownloadFile(projet[4].ToString(), "success");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }*/
-               
+                Console.ReadLine();             
             }
-            Console.WriteLine("Projet : " + o_ligne_projet[0][3]);
-            Console.WriteLine("Projet : " + o_ligne_projet[1][4]);
 
 		} // Fin loadProject
 
-		private TreeNode createTreeFolder(TreeNode treeNode, Match match)
+        private TreeNode createTreeFolder(TreeNode treeNode, Match match)
 		{
 			String name = "";
-			Console.WriteLine(match.Success);
+
 			if (match.Success && match.Groups["name"].ToString().Equals("Description") == false
 				&& match.Groups["name"].ToString().Equals("Parent Directory") == false)
 			{
 				name = match.Groups["name"].ToString();
-				Console.WriteLine(name);
 
 				if (name.IndexOf('/') == -1)
 					treeNode.Nodes.Add(name);
 				else
 				{
-					createTreeFolder(treeNode, match);
-				}
+                    /* Contenu sous dossier ...
+                    createTreeFolder(treeNode, match);
+                    */
+                }
 			}
 
 			return treeNode;
@@ -183,25 +189,6 @@ namespace Titania
             frm_log.ShowDialog(this);
         }
 
-        // Option ajouter
-        private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                String path = folderBrowserDialog.SelectedPath;
-                String folder = path;
-
-                try
-                {
-                    treeView1.Nodes.Add(createTreeFolderLocal(path));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-            }
-        }
 
         // Créer une arborescence à partir d'un chemin local
         private TreeNode createTreeFolderLocal(String path)
@@ -231,7 +218,33 @@ namespace Titania
 
 		private void ajouterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ajouterToolStripMenuItem_Click(sender, e);
+            Form_add frm_add = new Form_add();
+            frm_add.ShowDialog(this);
+            return;
+        }
+
+        // Clic sur l'arborescence
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            int index_first = e.Node.Index;
+
+            // Clic sur un noeud enfant
+            if (e.Node.Level != 0)
+                index_first = e.Node.Parent.Index;
+
+            pan_infoproj.Visible = true;
+            lb_nomproj.Text = lst_projets[index_first].getName();
+            lb_dtcreation.Text = lst_projets[index_first].getDatecreation().ToString().Split(' ')[0];
+            lb_descproj.Text = lst_projets[index_first].getDesc();
+            
+
+        } // Fin treeView1_AfterSelect
+
+        private void ajouterToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Form_add frm_add = new Form_add();
+            frm_add.ShowDialog(this);
+            return;
         }
     }
 }

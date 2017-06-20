@@ -1,3 +1,4 @@
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\bin\Debug\DAL.dll.config
 D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\bin\Debug\DAL.dll
 D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\bin\Debug\DAL.pdb
 D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\bin\Debug\controler.dll
@@ -9,4 +10,5 @@ D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\bin\Debug\System.Thread
 D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\obj\Debug\DAL.dll
 D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\obj\Debug\DAL.pdb
-D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\bin\Debug\DAL.dll.config
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\bin\Debug\Renci.SshNet.dll
+D:\Fabien\Cours\Licence_2016_2017\Projets\c#\Titania\DAL\bin\Debug\Renci.SshNet.xml

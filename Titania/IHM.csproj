@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Renci.SshNet, Version=2016.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.0.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_add.Designer.cs">
+      <DependentUpon>Form_add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_log.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_add.resx">
+      <DependentUpon>Form_add.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_log.resx">
       <DependentUpon>Form_log.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,7 +101,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -120,6 +134,13 @@
       <Project>{d47adce6-08fa-4734-b558-44222defc751}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modele\Modele.csproj">
+      <Project>{62443512-4637-4cdf-9d75-7291c647a836}</Project>
+      <Name>Modele</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32_FOLDER.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
