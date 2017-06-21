@@ -75,19 +75,33 @@ namespace Titania
         {
             lst_projets = new List<Projet>();
 
-            // Réinitialisatoin de tous les noeuds3.
+            // Réinitialisatoin de tous les noeuds
             treeView1.Nodes.Clear();
+            pan_infoproj.Visible = false;
 
             IList<object[]> o_ligne_projet = BLL.CommonController.Getproject(Properties.Settings.Default["login"].ToString());
 			String url = "";
 
             foreach (var projet in o_ligne_projet)
             {
-
+                // Récupération de la description
                 string w_desc = BLL.CommonController.GetDescprojet((int)projet[1]);
 
-                lst_projets.Add(new Projet((int)projet[1], projet[2].ToString(), w_desc, (DateTime)projet[3]));
+                // Récupération de la date de modification
+                DateTime dt_modif = (DateTime)projet[3];
+                
+                IList<object[]> o_ligne_dtmodif = BLL.CommonController.GetDateModifProjet((int)projet[1]);
+                if (o_ligne_dtmodif.Count > 0)
+                    dt_modif = (DateTime)o_ligne_dtmodif[0][1];
 
+                List<string> lst_collab = new List<string>(); 
+                IList<object[]> o_ligne_collab = BLL.CommonController.GetCollabProjet((int)projet[1]);
+                foreach (var collab in o_ligne_collab)
+                {
+                    lst_collab.Add(collab[0].ToString());
+                }
+
+                lst_projets.Add(new Projet((int)projet[1], projet[2].ToString(), w_desc, (DateTime)projet[3], dt_modif, lst_collab));
 
                 url = projet[4].ToString();
 				
@@ -244,8 +258,19 @@ namespace Titania
             pan_infoproj.Visible = true;
             lb_nomproj.Text = lst_projets[index_first].getName();
             lb_dtcreation.Text = lst_projets[index_first].getDatecreation().ToString().Split(' ')[0];
+            lb_dtmodif.Text = lst_projets[index_first].getDatemodif().ToString().Split(' ')[0];
             lb_descproj.Text = lst_projets[index_first].getDesc();
-            
+
+            string w_collab = "";
+            List<string> lst_collab = lst_projets[index_first].getCollab();
+            foreach (var collab in lst_collab)
+            {
+                if (w_collab != "")
+                    w_collab = w_collab + " - ";
+                w_collab = w_collab + collab.Trim();
+            }
+
+            lb_collab.Text = w_collab;
 
         } // Fin treeView1_AfterSelect
 
@@ -254,6 +279,14 @@ namespace Titania
             Form_add frm_add = new Form_add();
             frm_add.ShowDialog(this);
             return;
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // contextMenuStrip1.Hide();
+            }
         }
     }
 }

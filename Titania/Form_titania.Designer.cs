@@ -40,6 +40,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ajouterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pan_infoproj = new System.Windows.Forms.Panel();
+            this.lb_dtmodif = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.lb_descproj = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lb_dtcreation = new System.Windows.Forms.Label();
@@ -47,8 +49,8 @@
             this.lb_nomproj = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.lb_dtmodif = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lb_collab = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -132,6 +134,7 @@
             this.treeView1.Size = new System.Drawing.Size(294, 530);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // contextMenuStrip1
             // 
@@ -151,6 +154,8 @@
             // 
             this.pan_infoproj.BackColor = System.Drawing.Color.White;
             this.pan_infoproj.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pan_infoproj.Controls.Add(this.lb_collab);
+            this.pan_infoproj.Controls.Add(this.label6);
             this.pan_infoproj.Controls.Add(this.lb_dtmodif);
             this.pan_infoproj.Controls.Add(this.label5);
             this.pan_infoproj.Controls.Add(this.lb_descproj);
@@ -162,71 +167,14 @@
             this.pan_infoproj.Dock = System.Windows.Forms.DockStyle.Top;
             this.pan_infoproj.Location = new System.Drawing.Point(0, 0);
             this.pan_infoproj.Name = "pan_infoproj";
-            this.pan_infoproj.Size = new System.Drawing.Size(589, 148);
+            this.pan_infoproj.Size = new System.Drawing.Size(589, 176);
             this.pan_infoproj.TabIndex = 0;
             this.pan_infoproj.Visible = false;
-            // 
-            // lb_descproj
-            // 
-            this.lb_descproj.AutoSize = true;
-            this.lb_descproj.Location = new System.Drawing.Point(120, 104);
-            this.lb_descproj.MinimumSize = new System.Drawing.Size(50, 0);
-            this.lb_descproj.Name = "lb_descproj";
-            this.lb_descproj.Size = new System.Drawing.Size(50, 13);
-            this.lb_descproj.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(42, 104);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Description :";
-            // 
-            // lb_dtcreation
-            // 
-            this.lb_dtcreation.AutoSize = true;
-            this.lb_dtcreation.Location = new System.Drawing.Point(120, 68);
-            this.lb_dtcreation.MinimumSize = new System.Drawing.Size(50, 0);
-            this.lb_dtcreation.Name = "lb_dtcreation";
-            this.lb_dtcreation.Size = new System.Drawing.Size(50, 13);
-            this.lb_dtcreation.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(11, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Date de création :";
-            // 
-            // lb_nomproj
-            // 
-            this.lb_nomproj.AutoSize = true;
-            this.lb_nomproj.Location = new System.Drawing.Point(120, 32);
-            this.lb_nomproj.MinimumSize = new System.Drawing.Size(50, 0);
-            this.lb_nomproj.Name = "lb_nomproj";
-            this.lb_nomproj.Size = new System.Drawing.Size(50, 13);
-            this.lb_nomproj.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Nom du projet : ";
             // 
             // lb_dtmodif
             // 
             this.lb_dtmodif.AutoSize = true;
-            this.lb_dtmodif.Location = new System.Drawing.Point(410, 68);
+            this.lb_dtmodif.Location = new System.Drawing.Point(462, 61);
             this.lb_dtmodif.MinimumSize = new System.Drawing.Size(50, 0);
             this.lb_dtmodif.Name = "lb_dtmodif";
             this.lb_dtmodif.Size = new System.Drawing.Size(50, 13);
@@ -236,11 +184,87 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(279, 68);
+            this.label5.Location = new System.Drawing.Point(281, 61);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 13);
+            this.label5.Size = new System.Drawing.Size(182, 13);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Date de modification :";
+            this.label5.Text = "Date de dernière modification :";
+            // 
+            // lb_descproj
+            // 
+            this.lb_descproj.AutoSize = true;
+            this.lb_descproj.Location = new System.Drawing.Point(120, 133);
+            this.lb_descproj.MinimumSize = new System.Drawing.Size(50, 0);
+            this.lb_descproj.Name = "lb_descproj";
+            this.lb_descproj.Size = new System.Drawing.Size(50, 13);
+            this.lb_descproj.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(42, 133);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Description :";
+            // 
+            // lb_dtcreation
+            // 
+            this.lb_dtcreation.AutoSize = true;
+            this.lb_dtcreation.Location = new System.Drawing.Point(120, 61);
+            this.lb_dtcreation.MinimumSize = new System.Drawing.Size(50, 0);
+            this.lb_dtcreation.Name = "lb_dtcreation";
+            this.lb_dtcreation.Size = new System.Drawing.Size(50, 13);
+            this.lb_dtcreation.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(11, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Date de création :";
+            // 
+            // lb_nomproj
+            // 
+            this.lb_nomproj.AutoSize = true;
+            this.lb_nomproj.Location = new System.Drawing.Point(120, 25);
+            this.lb_nomproj.MinimumSize = new System.Drawing.Size(50, 0);
+            this.lb_nomproj.Name = "lb_nomproj";
+            this.lb_nomproj.Size = new System.Drawing.Size(50, 13);
+            this.lb_nomproj.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(27, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Nom du projet : ";
+            // 
+            // lb_collab
+            // 
+            this.lb_collab.AutoSize = true;
+            this.lb_collab.Location = new System.Drawing.Point(120, 97);
+            this.lb_collab.MinimumSize = new System.Drawing.Size(50, 0);
+            this.lb_collab.Name = "lb_collab";
+            this.lb_collab.Size = new System.Drawing.Size(50, 13);
+            this.lb_collab.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(25, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Collaborateurs :";
             // 
             // Form_titania
             // 
@@ -291,6 +315,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lb_dtmodif;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lb_collab;
+        private System.Windows.Forms.Label label6;
     }
 }
 

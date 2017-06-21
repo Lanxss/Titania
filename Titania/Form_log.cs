@@ -39,9 +39,13 @@ namespace Titania
 
                 Properties.Settings.Default.Save();
 
-                // Récupération de'= l'id de l'utilisateur
+                // Récupération de l'id de l'utilisateur
                 IList<object[]> o_ligne_iduser = BLL.CommonController.getIdUser(Properties.Settings.Default["login"].ToString());
                 Form_titania.idUser = Int32.Parse(o_ligne_iduser[0][0].ToString());
+
+                // Récupération des projets
+                Form_titania form_parent = this.Owner as Form_titania;
+                form_parent.loadProject();
 
                 this.Close();
             }
