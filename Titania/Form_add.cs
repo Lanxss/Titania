@@ -29,25 +29,23 @@ namespace Titania
         private string createProjet(string nom, string desc, string path)
         {
             string w_ret = "";
-            string namefolder = path.Substring(path.LastIndexOf("\\") + 1);
-            string urlfolder = "http://37.59.36.109/" + namefolder;
+            //string namefolder = path.Substring(path.LastIndexOf("\\") + 1);
+            nom = nom.Replace(" ", "_");
+            string urlfolder = "http://37.59.36.109/" + nom;
 
             try
             {
                 // Vérification du dossier sur le serveur
-                if (BLL.Uti.checkUrlFolder(urlfolder) == false)
-                {
-                    string w_rep = BLL.Uti.createFolderServ(urlfolder);
-                    if (w_rep != "")
-                        return w_rep;
-                }
-
+                string w_rep = BLL.Uti.createFolderServ(urlfolder);
+                if (w_rep != "")
+                    return w_rep;
+ 
                 // Parcours du contenu du dossier par l'envoie des fichiers
                 foreach (var file in Directory.GetFileSystemEntries(path, "*", SearchOption.AllDirectories))
                 {
                     if (Path.HasExtension(file))
                     {
-                        BLL.Uti.sendFile(namefolder, Path.GetFullPath(file));
+                        BLL.Uti.sendFile(nom, Path.GetFullPath(file));
                     }
                 }
 
@@ -59,8 +57,11 @@ namespace Titania
                 return w_ret;
             }
 
-            BLL.CommonController.CreateProjet(nom, desc, urlfolder);
+            BLL.CommonController.CreateProjet(nom, desc, Form_titania.idUser);
 
+            Form_titania form_parent = this.Owner as Form_titania;
+            form_parent.loadProject();
+            
             return w_ret;
 
         } // Fin create projet

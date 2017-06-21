@@ -47,6 +47,8 @@
             this.lb_nomproj = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.lb_dtmodif = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -149,6 +151,8 @@
             // 
             this.pan_infoproj.BackColor = System.Drawing.Color.White;
             this.pan_infoproj.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pan_infoproj.Controls.Add(this.lb_dtmodif);
+            this.pan_infoproj.Controls.Add(this.label5);
             this.pan_infoproj.Controls.Add(this.lb_descproj);
             this.pan_infoproj.Controls.Add(this.label4);
             this.pan_infoproj.Controls.Add(this.lb_dtcreation);
@@ -219,6 +223,25 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Nom du projet : ";
             // 
+            // lb_dtmodif
+            // 
+            this.lb_dtmodif.AutoSize = true;
+            this.lb_dtmodif.Location = new System.Drawing.Point(410, 68);
+            this.lb_dtmodif.MinimumSize = new System.Drawing.Size(50, 0);
+            this.lb_dtmodif.Name = "lb_dtmodif";
+            this.lb_dtmodif.Size = new System.Drawing.Size(50, 13);
+            this.lb_dtmodif.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(279, 68);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(132, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Date de modification :";
+            // 
             // Form_titania
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +289,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lb_nomproj;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lb_dtmodif;
+        private System.Windows.Forms.Label label5;
     }
 }
 

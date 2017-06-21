@@ -21,6 +21,12 @@ namespace BLL
                 String.Format("SELECT * FROM check_login('" + login + "', '" + mdp + "')"));
         }
 
+        public static IList<object[]> getIdUser(String login)
+        {
+            return DAL.SessionManager.ExecuteQuery(
+                String.Format("SELECT * FROM return_iduser('" + login + "')"));
+        }
+
         public static IList<object[]> GetUser()
         {
             return DAL.SessionManager.ExecuteQuery(
@@ -43,9 +49,10 @@ namespace BLL
         }
 
         // Ajoute un projet
-        public static IList<object[]> CreateProjet(string name, string desc, string src)
+        public static IList<object[]> CreateProjet(string name, string desc, int iduser)
         {
-            return DAL.SessionManager.ExecuteQuery(String.Format("SELECT * FROM create_project('"+ name + "', '" + desc + "', '" + src + "')"));
+            Console.WriteLine("Nom : " + name + " desc " + desc + " iduser " + iduser);
+            return DAL.SessionManager.ExecuteQuery(String.Format("SELECT * FROM create_project('"+ name + "', '" + desc + "', '" + iduser + "')"));
         }
 
     }

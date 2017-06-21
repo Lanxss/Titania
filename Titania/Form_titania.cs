@@ -13,6 +13,7 @@ namespace Titania
     public partial class Form_titania : Form
     {
         public  List<Projet> lst_projets;
+        public static int idUser;
 
         public Form_titania()
         {
@@ -58,6 +59,11 @@ namespace Titania
                     frm_log.ShowDialog(this);
                     return;
                 }
+
+                // Récupération de'= l'id de l'utilisateur
+                IList<object[]> o_ligne_iduser = BLL.CommonController.getIdUser(Properties.Settings.Default["login"].ToString());
+                idUser = Int32.Parse(o_ligne_iduser[0][0].ToString());
+
                 loadProject();
                 this.Show();
 
@@ -65,9 +71,12 @@ namespace Titania
         }
 
         // Chargement des logins de l'utilisateur
-        private void loadProject()
+        public void loadProject()
         {
             lst_projets = new List<Projet>();
+
+            // Réinitialisatoin de tous les noeuds3.
+            treeView1.Nodes.Clear();
 
             IList<object[]> o_ligne_projet = BLL.CommonController.Getproject(Properties.Settings.Default["login"].ToString());
 			String url = "";
